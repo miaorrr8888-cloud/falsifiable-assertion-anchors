@@ -7,5 +7,6 @@
     "-m",
     "unittest",
     "test_value"
-  ]
+  ],
+  "expected_failure": "AssertionError: 1 != 2"
 }

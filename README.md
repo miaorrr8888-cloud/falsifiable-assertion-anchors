@@ -30,9 +30,9 @@ python scripts/check_anchor.py --root examples/demo_project --anchor examples/an
 
 已补：拒绝无效命令和非正超时；先检查 Python 回滚语法；拒绝项目符号链接；提供一个可运行的反证小项目。
 
-## 仍然缺什么
+## 当前限制
 
-退出码 1 本身不能证明失败原因是目标断言，仍需检查测试；临时目录不是安全沙箱，不能运行不可信程序，也不保证没有外部副作用。
+正则仍可过宽，需选择稳定且具体的断言标记。旧格式无 expected_failure 时保留兼容，但 evidence_level 明确为 EXIT_CODES_ONLY；临时副本不是安全沙箱。
 
 ## 验证与使用注意
 
@@ -49,3 +49,15 @@ python -m unittest discover -s tests -v
 由 miaorrr8888-cloud 在 AI 辅助下积累和维护，来源与边界见 [PROVENANCE.md](PROVENANCE.md)，许可见 [LICENSE](LICENSE)。
 
 [全部独立技能与阶段性工作记录](https://github.com/miaorrr8888-cloud/agent-skills-worklog)
+
+## 第二轮：预期失败原因检查
+
+锚点增加 expected_failure 正则；回滚后除退出码外还检查指定断言信息，失败原因不匹配则 FAIL。
+
+在仓库根目录运行：
+
+```sh
+python scripts/check_anchor.py --root examples/demo_project --anchor examples/anchor.json
+```
+
+新增工具的输入字段见脚本参数与 examples/。快照示例采用固定日期，过期后正常返回 HOLD；需要检查新采集的页面时填写真实带时区的采集时间，不要改日期伪装新证据。
