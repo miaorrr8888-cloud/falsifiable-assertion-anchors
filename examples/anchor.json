@@ -1,0 +1,11 @@
+{
+  "file": "value.py",
+  "original": "VALUE=2",
+  "rollback": "VALUE=1",
+  "command": [
+    "{python}",
+    "-m",
+    "unittest",
+    "test_value"
+  ]
+}

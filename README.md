@@ -1,18 +1,51 @@
-# falsifiable-assertion-anchors
+# 回归测试反证检查
 
-Python 3.10+, standard library only.
-`python scripts/check_anchor.py --root <project> --anchor <anchor.json>`
-Anchor JSON: file, original, rollback, command (an argv array). Run only trusted project tests.
-The tool tests baseline, mutation and restoration in a temporary source copy.
-A rollback must exit 1; other nonzero codes are not accepted as proof of an assertion failure.
+`falsifiable-assertion-anchors` · 独立技能仓库 · MIT
 
-Published by miaorrr8888-cloud with AI-assisted development and cleanup. See PROVENANCE.md and LICENSE.
-Validation: run `python -m unittest discover -s tests -v` from this repository root.
+适合：希望确认测试确实锁住修复的程序员
 
-## 独立仓库
+## 解决什么问题
 
-本仓库只包含 falsifiable-assertion-anchors 一个技能。
-源码目录、SKILL.md、许可和相关测试均可独立取得，不依赖其他技能仓库。
-工作记录与其他技能入口：[agent-skills-worklog](https://github.com/miaorrr8888-cloud/agent-skills-worklog)。
+在临时副本中撤回一项修复，看测试是否真的会失败，再恢复验证，减少“全绿但没测到问题”。
 
-离线验证：`python -m unittest discover -s tests -v`。
+## 快速开始
+
+Python 3.10+，标准库；只运行自己审核过的测试。
+
+在本仓库根目录运行：
+
+```sh
+python scripts/check_anchor.py --root examples/demo_project --anchor examples/anchor.json
+```
+
+## 输入与输出
+
+**输入**：anchor.json 指定 file、original、rollback、command 参数数组。{python} 可作为当前解释器占位符。
+
+**输出**：baseline/rollback/restored 退出码与 PASS/FAIL；输入错误或超时不当作修复证明。原项目源码不做回滚写入。
+
+## 本次完善
+
+原有缺口：回滚语法错、字符串命令、超时和符号链接缺少明确边界。
+
+已补：拒绝无效命令和非正超时；先检查 Python 回滚语法；拒绝项目符号链接；提供一个可运行的反证小项目。
+
+## 仍然缺什么
+
+退出码 1 本身不能证明失败原因是目标断言，仍需检查测试；临时目录不是安全沙箱，不能运行不可信程序，也不保证没有外部副作用。
+
+## 验证与使用注意
+
+```sh
+python -m unittest discover -s tests -v
+```
+
+测试覆盖被断言的离线行为，不等于真实平台、生产模型或业务效果验证。
+
+示例数据和图片均为合成演示，不是真实客户、交易、销量或模型成绩。不要提交真实凭据和私有输入。
+
+## 来源与工作记录
+
+由 miaorrr8888-cloud 在 AI 辅助下积累和维护，来源与边界见 [PROVENANCE.md](PROVENANCE.md)，许可见 [LICENSE](LICENSE)。
+
+[全部独立技能与阶段性工作记录](https://github.com/miaorrr8888-cloud/agent-skills-worklog)
