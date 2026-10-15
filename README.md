@@ -1,5 +1,7 @@
 # 回归测试反证检查
 
+[新手逐步使用指南](USER_GUIDE.md) · [用途与适用人群介绍](INTRODUCTION.md)
+
 `falsifiable-assertion-anchors` · 独立技能仓库 · MIT
 
 适合：希望确认测试确实锁住修复的程序员
