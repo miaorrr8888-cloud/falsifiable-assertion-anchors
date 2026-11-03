@@ -1,9 +1,12 @@
 ---
 name: falsifiable-assertion-anchors
-description: 在临时源码副本中回滚指定修复，检查测试能否发现缺陷，适用于验证回归测试是否有效。
+description: 检查代码改动是否确实解决问题，通过回滚对照与指定报错核对测试的有效性。
 license: MIT
----
+version: "1.1.0"
+display_name: "代码测试反证检查"
+agent_created: true
 
+---
 # 可证伪断言检查
 
 使用 `scripts/check_anchor.py --root <project> --anchor <anchor.json>`。锚点 JSON 包含 file、original、rollback 与 command（参数数组），格式见 README.md。
