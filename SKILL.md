@@ -2,7 +2,7 @@
 name: falsifiable-assertion-anchors
 description: 检查代码改动是否确实解决问题，通过回滚对照与指定报错核对测试的有效性。
 license: MIT
-version: "1.1.0"
+version: 1.1.1
 display_name: "代码测试反证检查"
 agent_created: true
 
