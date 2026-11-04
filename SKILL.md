@@ -1,5 +1,8 @@
 ---
 name: falsifiable-assertion-anchors
+slug: zhengrong-falsifiable-assertion-anchors
+displayName: "代码测试反证检查"
+summary: "用回滚对照和指定报错验证测试是否真的有效，避免出现测试通过但问题没解决的情况。"
 description: 检查代码改动是否确实解决问题，通过回滚对照与指定报错核对测试的有效性。
 license: MIT
 version: 1.1.1
